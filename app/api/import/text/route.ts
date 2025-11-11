@@ -1,5 +1,7 @@
 // app/api/import/text/route.ts
 import { NextResponse } from "next/server";
+export const runtime = "nodejs";
+
 
 // Эти пакеты поставим в dependencies:
 // mammoth (DOCX), pdf-parse (PDF), xlsx (XLSX/CSV), csv-parse (CSV fallback)

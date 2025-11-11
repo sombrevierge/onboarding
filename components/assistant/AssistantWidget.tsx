@@ -24,17 +24,21 @@ function useSessionChat(key = "assistant_chat_history") {
 export default function AssistantWidget({
   role,
   progress,
-  planTitle
+  planTitle,
+  floating = true, // по умолчанию плавающая кнопка включена
+  pngSrc = "/assistant.png", // если используешь PNG-аватар
 }: {
   role: string | null;
   progress: number | null;
   planTitle?: string | null;
+  floating?: boolean;          // ← НОВОЕ
+  pngSrc?: string;             // опционально, если нужно переопределить путь к png
 }) {
   const [open, setOpen] = useState(false);
   const { messages, setMessages } = useSessionChat();
   const [pending, setPending] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-
+  
   async function ask(question: string) {
     setPending(true);
     try {
@@ -90,17 +94,27 @@ export default function AssistantWidget({
         />
 
         {/* сама кнопка (вправо-вниз) */}
+        {floating && (
         <motion.button
           onClick={() => setOpen(true)}
-          className="absolute bottom-0 right-0 h-14 w-14 rounded-full shadow-xl ring-2 ring-white/60 bg-indigo-600 text-white flex items-center justify-center pointer-events-auto"
-          initial={{ scale: 0.96, opacity: 0.95 }}
-          animate={{ scale: [0.96, 1.02, 0.98, 1], opacity: 1 }}
-          transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-transparent"
+          initial={{ scale: 0.95, opacity: 0.9 }}
+          animate={{ scale: [0.95, 1.02, 0.98, 1], opacity: 1, y: [0, -2, 0, 2, 0], x: [0, 1, 0, -1, 0] }}
+          transition={{ repeat: Infinity, duration: 6 }}
           aria-label="Открыть AI-ассистента"
         >
-          <span className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600" />
-          <span className="relative h-3 w-3 rounded-full bg-white/90 shadow" />
+          {/* PNG с прозрачным фоном, свечение */}
+          <span className="absolute inset-0 -z-10 blur-2xl rounded-full bg-indigo-400/40" />
+          {/* сам PNG */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={pngSrc}
+            alt="Assistant"
+            className="h-14 w-14 select-none pointer-events-none"
+            draggable={false}
+          />
         </motion.button>
+      )}
 
         {/* PNG ассистента — поверх и слегка левее кнопки */}
         {/* PNG ассистента — увеличенный, прозрачный, без белого квадрата */}
