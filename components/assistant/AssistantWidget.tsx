@@ -103,16 +103,6 @@ export default function AssistantWidget({
           transition={{ repeat: Infinity, duration: 6 }}
           aria-label="Открыть AI-ассистента"
         >
-          {/* PNG с прозрачным фоном, свечение */}
-          <span className="absolute inset-0 -z-10 blur-2xl rounded-full bg-indigo-400/40" />
-          {/* сам PNG */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={pngSrc}
-            alt="Assistant"
-            className="h-14 w-14 select-none pointer-events-none"
-            draggable={false}
-          />
         </motion.button>
       )}
 
