@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 16px;
+}
+
+html, body { height: 100%; }
+body {
+  @apply bg-bg text-fg antialiased;
+}
+.glass {
+  @apply bg-white/60 backdrop-blur-md shadow-soft rounded-2xl;
+}
+.gradient-hero {
+  background: radial-gradient(1200px 600px at 70% 20%, rgba(124,116,255,0.25), transparent 60%),
+              linear-gradient(180deg, #EAE7F5 0%, #F6F4FB 100%);
+}

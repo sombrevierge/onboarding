@@ -1,0 +1,45 @@
+# dependencies
+node_modules/
+.pnpm-store/
+.pnp.* 
+.yarn/*
+
+# next
+.next/
+out/
+.next-turbo/
+.next/cache/
+
+# env
+.env*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs/
+
+# editor
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# vercel
+.vercel/
+
+# os
+.DS_Store
+Thumbs.db
+
+# coverage / tests
+coverage/
+.playwright/
+test-results/
+
+# misc
+*.local
+*.swp
